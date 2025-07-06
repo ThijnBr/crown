@@ -1,0 +1,6 @@
+com/thefallersgames/crown/commands/CrownCommand.class
+com/thefallersgames/crown/managers/CrownManager.class
+com/thefallersgames/crown/managers/DataManager.class
+com/thefallersgames/crown/listeners/CrownEventListener.class
+com/thefallersgames/crown/managers/ConfigManager.class
+com/thefallersgames/crown/CrownPlugin.class

@@ -1,0 +1,25 @@
+name: Crown
+version: '1.0'
+main: com.thefallersgames.crown.CrownPlugin
+api-version: '1.13'
+author: thefallersgames
+description: A plugin that adds a special crown item with unique properties
+commands:
+  crown:
+    description: Commands for managing crowns
+    usage: |
+      /<command> - Give yourself a crown (requires permission)
+      /<command> give <player> - Give a crown to a player
+      /<command> remove <player> - Remove a crown from a player
+      /<command> reload - Reload the plugin configuration
+    permission: crown.use
+    permission-message: You don't have permission to use this command!
+permissions:
+  crown.use:
+    description: Allows using the crown command
+    default: op
+  crown.admin:
+    description: Allows using admin crown commands
+    default: op
+    children:
+      crown.use: true 

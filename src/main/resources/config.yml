@@ -1,0 +1,40 @@
+# Crown Plugin Configuration
+
+# Crown item properties
+crown:
+  # Material for the crown (GOLDEN_HELMET, DIAMOND_HELMET, etc.)
+  material: GOLDEN_HELMET
+  
+  # Display name of the crown (supports color codes with &)
+  name: "&6The Crown"
+  
+  # Lore text shown on the crown (supports color codes with &)
+  lore:
+    - "&7A majestic crown worn by the leader"
+    - "&7Grants +2 extra hearts"
+    - "&e&lOnly for the rightful owner"
+  
+  # Additional health granted to the wearer (2.0 = 1 heart)
+  health_bonus: 4.0
+  
+  # Armor value (3.0 = netherite helmet equivalent)
+  armor: 3.0
+  
+  # Apply curse of binding (true/false)
+  binding_curse: true
+  
+  # Additional enchantments to apply to the crown
+  # Format: ENCHANTMENT_NAME: level
+  enchantments:
+    PROTECTION_ENVIRONMENTAL: 4
+    OXYGEN: 3
+    WATER_WORKER: 1
+
+# Messages
+messages:
+  prefix: "&6[Crown] &r"
+  crown_given: "&aYou have been given the crown!"
+  crown_removed: "&cYour crown has been removed!"
+  no_permission: "&cYou don't have permission to use this command!"
+  player_not_found: "&cPlayer not found!"
+  config_reloaded: "&aConfiguration reloaded!" 
