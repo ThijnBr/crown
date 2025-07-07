@@ -80,23 +80,63 @@ public class ConfigManager {
     }
     
     /**
-     * Checks if binding curse should be applied
-     * @return true if binding curse should be applied
+     * Checks if the crown should have binding curse
+     * @return true if binding curse is enabled
      */
     public boolean hasBindingCurse() {
         return config.getBoolean("crown.binding_curse", true);
     }
     
     /**
-     * Checks if vanishing curse should be applied
-     * @return true if vanishing curse should be applied
+     * Checks if the crown should have vanishing curse
+     * @return true if vanishing curse is enabled
      */
     public boolean hasVanishingCurse() {
         return config.getBoolean("crown.vanishing_curse", false);
     }
     
     /**
-     * Applies custom enchantments from config to the crown
+     * Checks if auto-equip on give is enabled
+     * @return true if auto-equip on give is enabled
+     */
+    public boolean isAutoEquipOnGiveEnabled() {
+        return config.getBoolean("behavior.auto_equip_on_give", true);
+    }
+    
+    /**
+     * Checks if crown transfer on kill is enabled
+     * @return true if crown transfer on kill is enabled
+     */
+    public boolean isCrownTransferOnKillEnabled() {
+        return config.getBoolean("behavior.transfer_on_kill", true);
+    }
+    
+    /**
+     * Checks if transfer to killer should be prioritized over dropping
+     * @return true if transfer to killer should be prioritized
+     */
+    public boolean isPrioritizeTransferEnabled() {
+        return config.getBoolean("behavior.prioritize_transfer", true);
+    }
+    
+    /**
+     * Checks if dropping the crown is allowed
+     * @return true if dropping the crown is allowed
+     */
+    public boolean isDroppingAllowed() {
+        return config.getBoolean("behavior.allow_dropping", false);
+    }
+    
+    /**
+     * Checks if crown should be removed from player data on death
+     * @return true if crown should be removed from player data on death
+     */
+    public boolean shouldRemoveCrownOnDeath() {
+        return config.getBoolean("behavior.remove_crown_on_death", true);
+    }
+    
+    /**
+     * Applies configured enchantments to the crown
      * @param crown The crown item to enchant
      */
     public void applyEnchantments(ItemStack crown) {

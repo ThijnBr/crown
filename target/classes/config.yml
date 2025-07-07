@@ -30,11 +30,29 @@ crown:
     OXYGEN: 3
     WATER_WORKER: 1
 
+# Crown behavior settings
+behavior:
+  # Auto-equip the crown when given to a player or transferred to killer (true/false)
+  auto_equip_on_give: true
+  
+  # Transfer crown to killer when the crown holder is killed (true/false)
+  transfer_on_kill: true
+  
+  # Allow players to drop the crown (true/false)
+  allow_dropping: false
+
+  # Prioritize transfer to killer over dropping the crown on death (true/false). (Only when allow_dropping is true)
+  prioritize_transfer: false
+  
+  # Remove crown from player data on death when the crown is dropped (true/false). It will be dropped or just removed based on allow_dropping.
+  remove_crown_on_death: false
+
 # Messages
 messages:
   prefix: "&6[Crown] &r"
   crown_given: "&aYou have been given the crown!"
   crown_removed: "&cYour crown has been removed!"
+  crown_transferred: "&aYou obtained the crown by defeating its previous owner!"
   no_permission: "&cYou don't have permission to use this command!"
   player_not_found: "&cPlayer not found!"
   config_reloaded: "&aConfiguration reloaded!" 

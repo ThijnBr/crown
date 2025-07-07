@@ -196,19 +196,83 @@ public class CrownManager {
         // Remove any existing crown they might have
         removeCrown(player);
         
+        // Remove any crowns from other players in their inventory
+        removeOtherCrownsFromInventory(player);
+        
         // Create and give the new crown
         ItemStack crown = createCrown(player);
         
         // Store the player as a crown owner
         crownOwners.put(playerUUID, playerUUID);
         
+        // Check if auto-equip is enabled
+        boolean autoEquip = configManager.isAutoEquipOnGiveEnabled();
+        
         // Give the crown to the player
-        if (player.getInventory().getHelmet() == null) {
+        if (autoEquip) {
+            // Handle any existing helmet
+            handleExistingHelmet(player);
+            
+            // Force equip the crown
             player.getInventory().setHelmet(crown);
             player.sendMessage(configManager.getMessage("crown_given"));
         } else {
             player.getInventory().addItem(crown);
             player.sendMessage(configManager.getMessage("crown_given"));
+        }
+    }
+    
+    /**
+     * Gives a crown to the specified player after a transfer (e.g., from kill)
+     * @param player The player to give the crown to
+     * @param isTransfer Whether this is a transfer event (e.g., from kill)
+     */
+    public void giveCrown(Player player, boolean isTransfer) {
+        UUID playerUUID = player.getUniqueId();
+        
+        // Remove any existing crown they might have
+        removeCrown(player);
+        
+        // Remove any crowns from other players in their inventory
+        removeOtherCrownsFromInventory(player);
+        
+        // Create and give the new crown
+        ItemStack crown = createCrown(player);
+        
+        // Store the player as a crown owner
+        crownOwners.put(playerUUID, playerUUID);
+        
+        // Check if auto-equip is enabled (always use the auto_equip_on_give setting)
+        boolean autoEquip = configManager.isAutoEquipOnGiveEnabled();
+        
+        // Give the crown to the player
+        if (autoEquip) {
+            // Handle any existing helmet
+            handleExistingHelmet(player);
+            
+            // Force equip the crown
+            player.getInventory().setHelmet(crown);
+        } else {
+            player.getInventory().addItem(crown);
+        }
+    }
+    
+    /**
+     * Handles an existing helmet by moving it to inventory or dropping it
+     * @param player The player whose helmet needs to be handled
+     */
+    private void handleExistingHelmet(Player player) {
+        ItemStack currentHelmet = player.getInventory().getHelmet();
+        if (currentHelmet != null && !isCrownItem(currentHelmet)) {
+            // Try to add to inventory
+            HashMap<Integer, ItemStack> leftover = player.getInventory().addItem(currentHelmet);
+            
+            // If inventory is full, drop the item
+            if (!leftover.isEmpty()) {
+                for (ItemStack item : leftover.values()) {
+                    player.getWorld().dropItemNaturally(player.getLocation(), item);
+                }
+            }
         }
     }
     
@@ -272,6 +336,38 @@ public class CrownManager {
         }
         
         return UUID.fromString(ownerString);
+    }
+    
+    /**
+     * Updates the owner of the crown item
+     * @param item The crown item to update
+     * @param player The new owner
+     */
+    public void updateCrownOwner(ItemStack item, Player player) {
+        if (!isCrownItem(item)) {
+            return;
+        }
+        
+        ItemMeta meta = item.getItemMeta();
+        PersistentDataContainer container = meta.getPersistentDataContainer();
+        container.set(ownerKey, PersistentDataType.STRING, player.getUniqueId().toString());
+        item.setItemMeta(meta);
+    }
+    
+    /**
+     * Registers a player as a crown owner
+     * @param playerUUID The UUID of the player to register
+     */
+    public void registerPlayerAsCrownOwner(UUID playerUUID) {
+        crownOwners.put(playerUUID, playerUUID);
+    }
+    
+    /**
+     * Removes a player from the crown owners list
+     * @param playerUUID The UUID of the player to remove
+     */
+    public void removePlayerFromCrownOwners(UUID playerUUID) {
+        crownOwners.remove(playerUUID);
     }
     
     /**
@@ -339,5 +435,23 @@ public class CrownManager {
      */
     public void setPendingCrownRespawn(Map<UUID, Boolean> pendingCrownRespawn) {
         this.pendingCrownRespawn = pendingCrownRespawn;
+    }
+    
+    /**
+     * Removes any crowns belonging to other players from the player's inventory
+     * @param player The player whose inventory to check
+     */
+    private void removeOtherCrownsFromInventory(Player player) {
+        UUID playerUUID = player.getUniqueId();
+        
+        for (ItemStack item : player.getInventory().getContents()) {
+            if (isCrownItem(item)) {
+                UUID ownerUUID = getCrownOwner(item);
+                // Remove crowns that belong to other players
+                if (ownerUUID != null && !ownerUUID.equals(playerUUID)) {
+                    player.getInventory().remove(item);
+                }
+            }
+        }
     }
 } 
