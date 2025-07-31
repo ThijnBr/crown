@@ -4,3 +4,5 @@ com/thefallersgames/crown/managers/DataManager.class
 com/thefallersgames/crown/listeners/CrownEventListener.class
 com/thefallersgames/crown/managers/ConfigManager.class
 com/thefallersgames/crown/CrownPlugin.class
+com/thefallersgames/crown/managers/ParticleManager.class
+com/thefallersgames/crown/managers/ParticleManager$1.class

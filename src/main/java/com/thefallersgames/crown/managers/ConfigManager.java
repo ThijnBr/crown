@@ -178,4 +178,94 @@ public class ConfigManager {
         String message = ChatColor.translateAlternateColorCodes('&', config.getString("messages." + key, ""));
         return prefix + message;
     }
+    
+    // Particle effect configuration methods
+    
+    /**
+     * Checks if particle effects are enabled
+     * @return true if particle effects are enabled
+     */
+    public boolean areParticlesEnabled() {
+        return config.getBoolean("particles.enabled", true);
+    }
+    
+    /**
+     * Gets the particle type to use
+     * @return The particle type as a string
+     */
+    public String getParticleType() {
+        return config.getString("particles.type", "FLAME");
+    }
+    
+    /**
+     * Gets the number of particles to spawn
+     * @return The particle count
+     */
+    public int getParticleCount() {
+        return config.getInt("particles.count", 30);
+    }
+    
+    /**
+     * Gets the duration of the particle effect in ticks
+     * @return The duration in ticks
+     */
+    public int getParticleDuration() {
+        return config.getInt("particles.duration", 60);
+    }
+    
+    /**
+     * Gets the X offset for particles
+     * @return The X offset
+     */
+    public double getParticleOffsetX() {
+        return config.getDouble("particles.offset.x", 0.3);
+    }
+    
+    /**
+     * Gets the Y offset for particles
+     * @return The Y offset
+     */
+    public double getParticleOffsetY() {
+        return config.getDouble("particles.offset.y", 1.8);
+    }
+    
+    /**
+     * Gets the Z offset for particles
+     * @return The Z offset
+     */
+    public double getParticleOffsetZ() {
+        return config.getDouble("particles.offset.z", 0.3);
+    }
+    
+    /**
+     * Gets the particle speed
+     * @return The particle speed
+     */
+    public double getParticleSpeed() {
+        return config.getDouble("particles.speed", 0.2);
+    }
+    
+    /**
+     * Gets the red component of the particle color
+     * @return The red value (0-255)
+     */
+    public int getParticleColorRed() {
+        return config.getInt("particles.color.red", 255);
+    }
+    
+    /**
+     * Gets the green component of the particle color
+     * @return The green value (0-255)
+     */
+    public int getParticleColorGreen() {
+        return config.getInt("particles.color.green", 215);
+    }
+    
+    /**
+     * Gets the blue component of the particle color
+     * @return The blue value (0-255)
+     */
+    public int getParticleColorBlue() {
+        return config.getInt("particles.color.blue", 0);
+    }
 } 

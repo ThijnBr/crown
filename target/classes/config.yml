@@ -47,6 +47,47 @@ behavior:
   # Remove crown from player data on death when the crown is dropped (true/false). It will be dropped or just removed based on allow_dropping.
   remove_crown_on_death: false
 
+# Particle effects when someone becomes leader
+particles:
+  # Enable particle effects when someone becomes leader (true/false)
+  enabled: true
+  
+  # Particle type to use
+  # Available particle types:
+  # Basic: EXPLOSION_NORMAL, EXPLOSION_LARGE, EXPLOSION_HUGE, FIREWORKS_SPARK
+  # Water: WATER_BUBBLE, WATER_SPLASH, WATER_WAKE, DRIP_WATER, WATER_DROP
+  # Combat: CRIT, CRIT_MAGIC, SMOKE_NORMAL, SMOKE_LARGE
+  # Magic: SPELL, SPELL_INSTANT, SPELL_MOB, SPELL_MOB_AMBIENT, SPELL_WITCH
+  # Environment: SUSPENDED, SUSPENDED_DEPTH, TOWN_AURA, CLOUD, FOOTSTEP
+  # Special: PORTAL, ENCHANTMENT_TABLE, LAVA, DRIP_LAVA, FLAME
+  # Villager: VILLAGER_ANGRY, VILLAGER_HAPPY
+  # Items: NOTE, HEART, BARRIER, ITEM_CRACK, BLOCK_CRACK, BLOCK_DUST, ITEM_TAKE
+  # Other: SNOWBALL, SNOW_SHOVEL, SLIME, MOB_APPEARANCE
+  # Colored: REDSTONE (supports color config), DUST (supports color config)
+  type: FLAME
+  
+  # Number of particles to spawn
+  count: 10
+  
+  # Duration of the particle effect in ticks (20 ticks = 1 second)
+  duration: 20
+  
+  # Offset from player position (x, y, z)
+  offset:
+    x: 0.3
+    y: 1.8
+    z: 0.3
+  
+  # Speed of particles (0.1 = slow, 1.0 = fast)
+  speed: 0.2
+  
+  # Color for colored particles (RGB values 0-255)
+  # Only applies to REDSTONE and DUST particle types
+  color:
+    red: 255
+    green: 215
+    blue: 0
+
 # Messages
 messages:
   prefix: "&6[Crown] &r"

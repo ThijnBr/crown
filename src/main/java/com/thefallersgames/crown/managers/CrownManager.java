@@ -220,6 +220,9 @@ public class CrownManager {
             player.getInventory().addItem(crown);
             player.sendMessage(configManager.getMessage("crown_given"));
         }
+        
+        // Play particle effect for becoming leader
+        playLeaderParticleEffect(player);
     }
     
     /**
@@ -255,6 +258,9 @@ public class CrownManager {
         } else {
             player.getInventory().addItem(crown);
         }
+        
+        // Play particle effect for becoming leader (even on transfer)
+        playLeaderParticleEffect(player);
     }
     
     /**
@@ -452,6 +458,16 @@ public class CrownManager {
                     player.getInventory().remove(item);
                 }
             }
+        }
+    }
+    
+    /**
+     * Plays the leader particle effect for a player
+     * @param player The player who became leader
+     */
+    private void playLeaderParticleEffect(Player player) {
+        if (plugin.getParticleManager() != null) {
+            plugin.getParticleManager().playLeaderParticleEffect(player);
         }
     }
 } 

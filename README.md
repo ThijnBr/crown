@@ -11,6 +11,7 @@ A Spigot/Bukkit plugin that adds a special crown item with unique properties.
 - Only the assigned owner can wear the crown
 - Crown is automatically destroyed on death and returned to the owner on respawn
 - Cannot be picked up by other players
+- **NEW**: Particle effects when someone becomes leader!
 
 ## Installation
 
@@ -41,6 +42,37 @@ The plugin is highly configurable. You can customize:
 - Health bonus
 - Armor value
 - Enchantments and curses
+- **NEW**: Particle effects when someone becomes leader!
+
+### Particle Effects Configuration
+
+The plugin now includes configurable particle effects that trigger when a player becomes leader. You can customize:
+
+- **enabled**: Enable/disable particle effects (default: true)
+- **type**: Particle type to use (FLAME, ENCHANTMENT_TABLE, PORTAL, etc.)
+- **count**: Number of particles to spawn per tick
+- **duration**: How long the effect lasts (in ticks, 20 ticks = 1 second)
+- **offset**: Position offset from the player (x, y, z coordinates)
+- **speed**: Speed of the particles
+- **color**: RGB color values for colored particles (like REDSTONE)
+
+Example configuration:
+```yaml
+particles:
+  enabled: true
+  type: FLAME
+  count: 50
+  duration: 60
+  offset:
+    x: 0.5
+    y: 2.0
+    z: 0.5
+  speed: 0.3
+  color:
+    red: 255
+    green: 215
+    blue: 0
+```
 
 See the `config.yml` file for all configuration options.
 

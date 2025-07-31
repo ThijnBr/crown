@@ -7,12 +7,14 @@ import com.thefallersgames.crown.listeners.CrownEventListener;
 import com.thefallersgames.crown.managers.CrownManager;
 import com.thefallersgames.crown.managers.ConfigManager;
 import com.thefallersgames.crown.managers.DataManager;
+import com.thefallersgames.crown.managers.ParticleManager;
 
 public class CrownPlugin extends JavaPlugin {
     
     private ConfigManager configManager;
     private CrownManager crownManager;
     private DataManager dataManager;
+    private ParticleManager particleManager;
     
     @Override
     public void onEnable() {
@@ -25,6 +27,9 @@ public class CrownPlugin extends JavaPlugin {
         
         // Initialize crown manager
         crownManager = new CrownManager(this, configManager);
+        
+        // Initialize particle manager
+        particleManager = new ParticleManager(this, configManager);
         
         // Load saved data
         loadData();
@@ -90,5 +95,13 @@ public class CrownPlugin extends JavaPlugin {
      */
     public DataManager getDataManager() {
         return dataManager;
+    }
+    
+    /**
+     * Gets the particle manager
+     * @return The particle manager
+     */
+    public ParticleManager getParticleManager() {
+        return particleManager;
     }
 } 
